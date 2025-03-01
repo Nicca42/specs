@@ -1,13 +1,13 @@
 ---
 title: Predeploys
 lang: en-US
-description: 
+description:
 ---
 
 # Predeploys
 
-<!-- START doctoc generated TOC please keep comment here to allow auto update -->
-<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+// START doctoc generated TOC please keep comment here to allow auto update
+// DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE
 **Table of Contents**
 
 - [Overview](#overview)
@@ -72,7 +72,7 @@ description:
   - [Invariants](#invariants-1)
 - [Security Considerations](#security-considerations)
 
-<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+// END doctoc generated TOC please keep comment here to allow auto update
 
 ## Overview
 
@@ -271,13 +271,13 @@ Each subsequent call is labeled with a number.
 
 ```mermaid
 flowchart LR
-    user -->|"1#46; sendMessage"| al2tol2
-    user --> |"2#46; relayMessage"|bl2tol2
+    user |"1#46; sendMessage"| al2tol2
+    user  |"2#46; relayMessage"|bl2tol2
     im{{SentMessage Event}}
     em{{ExecutingMessage Event}}
 
     direction TB
-    al2tol2 --> im
+    al2tol2  im
 
     bcl2[CrossL2Inbox]
     al2tol2[L2ToL2CrossDomainMessenger]
@@ -288,9 +288,9 @@ flowchart LR
     end
 
     subgraph "Chain B"
-      bl2tol2  --> |"3#46; validateMessage"|bcl2
-      bcl2 --> em
-      bl2tol2 --> |"4#46;"| Contract
+      bl2tol2   |"3#46; validateMessage"|bcl2
+      bcl2  em
+      bl2tol2  |"4#46;"| Contract
     end
 ```
 
@@ -428,9 +428,9 @@ sequenceDiagram
   Alice->>FactoryProxy: deploy(remoteToken, name, symbol, decimals)
   FactoryProxy->>FactoryImpl: delegatecall()
   FactoryProxy->>BeaconProxy: deploy with CREATE3
-  FactoryProxy-->FactoryProxy: deployments[superchainToken]=remoteToken
-  FactoryProxy-->FactoryProxy: emit OptimismSuperchainERC20Created(superchainToken, remoteToken, Alice)
-  BeaconProxy-->Beacon Contract: reads implementation()
+  FactoryProxyFactoryProxy: deployments[superchainToken]=remoteToken
+  FactoryProxyFactoryProxy: emit OptimismSuperchainERC20Created(superchainToken, remoteToken, Alice)
+  BeaconProxyBeacon Contract: reads implementation()
   BeaconProxy->>Implementation: delegatecall()
   BeaconProxy->>Implementation: initialize()
 ```
@@ -670,12 +670,12 @@ sequenceDiagram
   participant SuperERC20 as to Token
 
   Alice->>L2StandardBridge: convert(from, to, amount)
-  L2StandardBridge-->factory: check legacy token is allowed
-  L2StandardBridge-->superfactory: check super token is allowed
-  L2StandardBridge-->L2StandardBridge: checks matching remote and decimals
+  L2StandardBridgefactory: check legacy token is allowed
+  L2StandardBridgesuperfactory: check super token is allowed
+  L2StandardBridgeL2StandardBridge: checks matching remote and decimals
   L2StandardBridge->>legacy: IERC20(from).burn(Alice, amount)
   L2StandardBridge->>SuperERC20: IERC20(to).mint(Alice, amount)
-  L2StandardBridge-->L2StandardBridge: emit Converted(from, to, Alice, amount)
+  L2StandardBridgeL2StandardBridge: emit Converted(from, to, Alice, amount)
 ```
 
 ## SuperchainTokenBridge
@@ -772,16 +772,16 @@ sequenceDiagram
 
   from->>L2SBA: sendERC20(tokenAddr, to, amount, chainID)
   L2SBA->>SuperERC20_A: crosschainBurn(from, amount)
-  SuperERC20_A-->SuperERC20_A: emit CrosschainBurn(from, amount)
+  SuperERC20_ASuperERC20_A: emit CrosschainBurn(from, amount)
   L2SBA->>Messenger_A: sendMessage(chainId, message)
   Messenger_A->>L2SBA: return msgHash_
-  L2SBA-->L2SBA: emit SentERC20(tokenAddr, from, to, amount, destination)
+  L2SBAL2SBA: emit SentERC20(tokenAddr, from, to, amount, destination)
   L2SBA->>from: return msgHash_
   Inbox->>Messenger_B: relayMessage()
   Messenger_B->>L2SBB: relayERC20(tokenAddr, from, to, amount)
   L2SBB->>SuperERC20_B: crosschainMint(to, amount)
-  SuperERC20_B-->SuperERC20_B: emit CrosschainMint(to, amount)
-  L2SBB-->L2SBB: emit RelayedERC20(tokenAddr, from, to, amount, source)
+  SuperERC20_BSuperERC20_B: emit CrosschainMint(to, amount)
+  L2SBBL2SBB: emit RelayedERC20(tokenAddr, from, to, amount, source)
 ```
 
 ### Invariants

@@ -1,13 +1,13 @@
 ---
 title: Background
 lang: en-US
-description: 
+description:
 ---
 
 # Background
 
-<!-- START doctoc generated TOC please keep comment here to allow auto update -->
-<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+// START doctoc generated TOC please keep comment here to allow auto update
+// DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE
 **Table of Contents**
 
 - [Overview](#overview)
@@ -28,7 +28,7 @@ description:
   - [Withdrawing](#withdrawing)
 - [Next Steps](#next-steps)
 
-<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+// END doctoc generated TOC please keep comment here to allow auto update
 
 ## Overview
 
@@ -104,15 +104,15 @@ graph TD
 
     Verifiers -.->|fetch transaction batches| EthereumL1
     Verifiers -.->|fetch deposit data| EthereumL1
-    Verifiers -->|submit/validate/challenge output proposals| EthereumL1
+    Verifiers |submit/validate/challenge output proposals| EthereumL1
     Verifiers -.->|fetch realtime P2P updates| Sequencers
-    
-    Users -->|submit deposits/withdrawals| EthereumL1
-    Users -->|submit transactions| Sequencers
-    Users -->|query data| Verifiers
+
+    Users |submit deposits/withdrawals| EthereumL1
+    Users |submit transactions| Sequencers
+    Users |query data| Verifiers
 
 
-    Sequencers -->|submit transaction batches| EthereumL1
+    Sequencers |submit transaction batches| EthereumL1
     Sequencers -.->|fetch deposit data| EthereumL1
 
     classDef l1Contracts stroke:#bbf,stroke-width:2px;
@@ -185,11 +185,11 @@ graph TD
     Users(Users)
 
     %% Interactions
-    Users -->|<b>1.</b> submit deposit| OptimismPortal
+    Users |<b>1.</b> submit deposit| OptimismPortal
     Sequencer -.->|<b>2.</b> fetch deposit events| OptimismPortal
-    Sequencer -->|<b>3.</b> generate deposit block| Sequencer
-    Users -->|<b>4.</b> send transactions| Sequencer
-    Sequencer -->|<b>5.</b> submit transaction batches| BatchInbox
+    Sequencer |<b>3.</b> generate deposit block| Sequencer
+    Users |<b>4.</b> send transactions| Sequencer
+    Sequencer |<b>5.</b> submit transaction batches| BatchInbox
 
     classDef l1Contracts stroke:#bbf,stroke-width:2px;
     classDef l2Components stroke:#333,stroke-width:2px;
@@ -221,15 +221,15 @@ graph LR
     Users(Users)
 
     %% Interactions
-    Users -->|<b>1.</b> send withdrawal initialization txn| Sequencer
-    Sequencer -->|<b>2.</b> submit transaction batch| BatchInbox
-    Proposers -->|<b>3.</b> submit output proposal| DisputeGameFactory
-    DisputeGameFactory -->|<b>4.</b> generate game| FaultDisputeGame
-    Users -->|<b>5.</b> submit withdrawal proof| OptimismPortal
-    Users -->|<b>6.</b> wait for finalization| FaultDisputeGame
-    Users -->|<b>7.</b> submit withdrawal finalization| OptimismPortal
-    OptimismPortal -->|<b>8.</b> check game validity| FaultDisputeGame
-    OptimismPortal -->|<b>9.</b> execute withdrawal transaction| ExternalContracts
+    Users |<b>1.</b> send withdrawal initialization txn| Sequencer
+    Sequencer |<b>2.</b> submit transaction batch| BatchInbox
+    Proposers |<b>3.</b> submit output proposal| DisputeGameFactory
+    DisputeGameFactory |<b>4.</b> generate game| FaultDisputeGame
+    Users |<b>5.</b> submit withdrawal proof| OptimismPortal
+    Users |<b>6.</b> wait for finalization| FaultDisputeGame
+    Users |<b>7.</b> submit withdrawal finalization| OptimismPortal
+    OptimismPortal |<b>8.</b> check game validity| FaultDisputeGame
+    OptimismPortal |<b>9.</b> execute withdrawal transaction| ExternalContracts
 
     %% Styling
     classDef l1Contracts stroke:#bbf,stroke-width:2px;

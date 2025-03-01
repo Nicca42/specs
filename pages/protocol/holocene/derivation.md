@@ -1,7 +1,7 @@
 # Holocene L2 Chain Derivation Changes
 
-<!-- START doctoc generated TOC please keep comment here to allow auto update -->
-<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+// START doctoc generated TOC please keep comment here to allow auto update
+// DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE
 **Table of Contents**
 
 - [Holocene Derivation](#holocene-derivation)
@@ -28,7 +28,7 @@
   - [Batcher Hardening](#batcher-hardening)
   - [Sync Start](#sync-start)
 
-<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+// END doctoc generated TOC please keep comment here to allow auto update
 
 # Holocene Derivation
 
@@ -40,11 +40,11 @@ Interop. The changes are:
 
 - _Strict Batch Ordering_ required batches within and across channels to be strictly ordered.
 - _Partial Span Batch Validity_ determines the validity of singular batches from a span batch
-individually, only invalidating the remaining span batch upon the first invalid singular batch.
+  individually, only invalidating the remaining span batch upon the first invalid singular batch.
 - _Fast Channel Invalidation_, similarly to Partial Span Batch Validity applied to the channel
-layer, forward-invalidates a channel upon finding an invalid batch.
+  layer, forward-invalidates a channel upon finding an invalid batch.
 - _Steady Block Derivation_ derives invalid payload attributes immediately as deposit-only
-blocks.
+  blocks.
 
 The combined effect of these changes is that the impact of an invalid batch is contained to the
 block number at hand, instead of propagating forwards or backwards in the safe chain, while also
@@ -64,13 +64,13 @@ However, Strict Batch Ordering leads to the following additional checks and rule
 queue:
 
 - If a _non-first frame_ (i.e., a frame with index >0) decoded from a batcher transaction is _out of
-order_, it is **immediately dropped**, where the frame is called _out of order_ if
+  order_, it is **immediately dropped**, where the frame is called _out of order_ if
   - its frame number is not the previous frame's plus one, if it has the same channel ID, or
   - the previous frame already closed the channel with the same ID, or
   - the non-first frame has a different channel ID than the previous frame in the frame queue.
 - If a _first frame_ is decoded while the previous frame isn't a _last frame_ (i.e., `is_last` is
-`false`), all previous frames for the same channel are dropped and this new first frame remains in
-the queue.
+  `false`), all previous frames for the same channel are dropped and this new first frame remains in
+  the queue.
 
 These rules guarantee that the frame queue always holds frames whose indices are ordered,
 contiguous and include the first frame, per channel. Plus, a first frame of a channel is either the
@@ -106,15 +106,15 @@ frame loading becomes simpler in the channel bank:
 
 - A first frame for a new channel starts a new channel as the staging channel.
   - If there already is an open, non-completed staging channel, it is dropped and replaced by this
-  new channel. This is consistent with how the frame queue drops all frames of a non-closed channel
-  upon the arrival of a first frame for a new channel.
+    new channel. This is consistent with how the frame queue drops all frames of a non-closed channel
+    upon the arrival of a first frame for a new channel.
 - If the current channel is timed-out, but not yet pruned, and the incoming frame would be the next
-correct frame for this channel, the frame and channel are dropped, including all future frames for
-the channel that might still be in the frame queue. Note that the equivalent rule was already
-present pre-Holocene.
+  correct frame for this channel, the frame and channel are dropped, including all future frames for
+  the channel that might still be in the frame queue. Note that the equivalent rule was already
+  present pre-Holocene.
 - After adding a frame to the staging channel, the channel is dropped if its raw compressed size as
-defined in the Bedrock specification is larger than `MAX_RLP_BYTES_PER_CHANNEL`. This rule replaces
-the total limit of all channels' combined sizes by `MAX_CHANNEL_BANK_SIZE` before Holocene.
+  defined in the Bedrock specification is larger than `MAX_RLP_BYTES_PER_CHANNEL`. This rule replaces
+  the total limit of all channels' combined sizes by `MAX_CHANNEL_BANK_SIZE` before Holocene.
 
 ## Span Batches
 
@@ -131,14 +131,14 @@ following span batch validity checks are done, before singular batches are deriv
 Definitions are borrowed from the [original Span Batch specs](../delta/span-batches.md).
 
 - If the span batch _L1 origin check_ is not part of the canonical L1 chain, the span batch is
-invalid.
+  invalid.
 - A failed parent check invalidates the span batch.
 - If `span_start.timestamp > next_timestamp`, the span batch is invalid, because we disallow gaps
-due to the new strict batch ordering rules.
+  due to the new strict batch ordering rules.
 - If `span_end.timestamp < next_timestamp`, the span batch is set to have `past` validity, as it
-doesn't contain any new batches (this would also happen if applying timestamp checks to each derived
-singular batch individually). See below in the [Batch Queue](#batch-queue) section about the new
-`past` validity.
+  doesn't contain any new batches (this would also happen if applying timestamp checks to each derived
+  singular batch individually). See below in the [Batch Queue](#batch-queue) section about the new
+  `past` validity.
 - Note that we still allow span batches to overlap with the safe chain (`span_start.timestamp <
 next_timestamp`).
 
@@ -156,12 +156,12 @@ So the following changes are made to the [Bedrock Batch Queue](../derivation.md#
 
 - The reordering step is removed, so that later checks will drop batches that are not sequential.
 - The `future` batch validity status is removed, and batches that were determined to be in the
-future are now directly `drop`-ped. This effectively disallows gaps, instead of buffering future
-batches.
+  future are now directly `drop`-ped. This effectively disallows gaps, instead of buffering future
+  batches.
 - A new batch validity `past` is introduced. A batch has `past` validity if its timestamp is before
-or equal to the safe head's timestamp. This also applies to span batches.
+  or equal to the safe head's timestamp. This also applies to span batches.
 - The other rules stay the same, including empty batch generation when the sequencing window
-elapses.
+  elapses.
 
 Note that these changes to batch validity rules also activate by the L1 inclusion block timestamp of
 a batch, not with the batch timestamp. This is important to guarantee consistent validation rules
@@ -170,9 +170,9 @@ for the first channel after Holocene activation.
 The `drop` and `past` batch validities cause the following new behavior:
 
 - If a batch is found to be invalid and is dropped, the remaining span batch it originated from, if
-applicable, is also discarded.
+  applicable, is also discarded.
 - If a batch is found to be from the `past`, it is silently dropped and the remaining span batch
-continues to be processed. This applies to both, span and singular batches.
+  continues to be processed. This applies to both, span and singular batches.
 
 Note that when the L1 origin of the batch queue moves forward, it is guaranteed that it is empty,
 because future batches aren't buffered any more. Furthermore, because future batches are directly
@@ -239,9 +239,9 @@ better worst-case cached data usage.
 
 - The frame queue only ever holds frames from a single batcher transaction.
 - The channel bank only ever holds a single staging channel, that is either being built up by
-incoming frames, or is is being processed by later stages.
+  incoming frames, or is is being processed by later stages.
 - The batch queue only ever holds at most a single span batch (that is being processed) and a single singular
-batch (from the span batch, or the staging channel directly)
+  batch (from the span batch, or the staging channel directly)
 - The sync start greatly simplifies in the average production case.
 
 This has advantages for Fault Proof program implementations.
@@ -296,7 +296,7 @@ The only conceivable scenarios in which a _valid_ batch leads to an _invalid_ pa
 
 - a buggy or malicious sequencer+batcher
 - in the future, that an previously valid Interop dependency referenced in that payload is later
-invalidated, while the block that contained the Interop dependency got already batched.
+  invalidated, while the block that contained the Interop dependency got already batched.
 
 It is this latter case that inspired the Steady Block Derivation rule. It guarantees that the
 secondary effects of an invalid Interop dependency are contained to a single block only, which
@@ -336,7 +336,7 @@ Thanks to the new strict frame and batch ordering rules, the sync start algorith
 in the average case. The rules guarantee that
 
 - an incoming first frame for a new channel leads to discarding previous incomplete frames for a
-non-closed previous channel in the frame queue and channel bank, and
+  non-closed previous channel in the frame queue and channel bank, and
 - when the derivation pipeline L1 origin progresses, the batch queue is empty.
 
 So the sync start algorithm can optimistically select the last L2 unsafe, safe and finalized heads
@@ -345,11 +345,11 @@ from the engine and if the L2 safe head's L1 origin is _plausible_ (see the
 start deriving from this L1 origin.
 
 - If the first frame we find is a _first frame_ for a channel that includes the safe head (TBD: or
-even just the following L2 block with the current safe head as parent), we can
-safely continue derivation from this channel because no previous derivation pipeline state could
-have influenced the L2 safe head.
+  even just the following L2 block with the current safe head as parent), we can
+  safely continue derivation from this channel because no previous derivation pipeline state could
+  have influenced the L2 safe head.
 - If the first frame we find is a non-first frame, then we need to walk back a full channel
-timeout window to see if we find the start of that channel.
+  timeout window to see if we find the start of that channel.
   - If we find the starting frame, we can continue derivation from it.
   - If we don't find the starting frame, we need to go back a full channel timeout window before the
     finalized L2 head's L1 origin.

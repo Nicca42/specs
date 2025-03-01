@@ -1,7 +1,7 @@
 ---
 title: OP Contracts Manager
 lang: en-US
-description: 
+description:
 ---
 
 # OP Contracts Manager
@@ -22,8 +22,8 @@ of governance approved [contract releases] can be found on the
 [Optimism Monorepo releases] page, and is the set of releases named
 `op-contracts/vX.Y.Z`.
 
-<!-- START doctoc generated TOC please keep comment here to allow auto update -->
-<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+// START doctoc generated TOC please keep comment here to allow auto update
+// DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE
 **Table of Contents**
 
 - [Overview](#overview)
@@ -51,7 +51,7 @@ of governance approved [contract releases] can be found on the
   - [Safely using `DELEGATECALL`](#safely-using-delegatecall)
   - [Atomicity of upgrades](#atomicity-of-upgrades)
 
-<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+// END doctoc generated TOC please keep comment here to allow auto update
 
 ## Overview
 
@@ -71,7 +71,7 @@ Upgrades must be performed by the [Upgrade Controller](../protocol/stage-1.md#ro
 The following interface defines the available getter methods:
 
 ```solidity
-/// @notice Returns the release string with the format `op-contracts/vX.Y.Z`. 
+/// @notice Returns the release string with the format `op-contracts/vX.Y.Z`.
 /// Appends "-rc" if this is a release candidate.
 function l1ContractsRelease() external view returns (string memory);
 /// @notice Addresses of the Blueprint contracts.
@@ -317,11 +317,11 @@ The high level logic of the `addGameType` method is as follows (for each chain):
 3. Read the `DisputeGameFactory` address from the `SystemConfig`.
 4. Call `DisputeGameFactory.setImplementation()` to register the new game.
 
-| Name                | Type    | Description                                        | Source                                     |
-| ------------------- | ------- | -------------------------------------------------- | ------------------------------------------ |
-| weth                | address | Address of the DelayedWeth contract | Newly deployed contract, or provided       |
-| anchorStateRegistry | address | Registry contract address                          | Copied from existing `PermissionedGame`    |
-| l2ChainId           | uint256 | Chain ID of the L2 network                         | Copied from existing `PermissionedGame`    |
+| Name                | Type    | Description                         | Source                                  |
+| ------------------- | ------- | ----------------------------------- | --------------------------------------- |
+| weth                | address | Address of the DelayedWeth contract | Newly deployed contract, or provided    |
+| anchorStateRegistry | address | Registry contract address           | Copied from existing `PermissionedGame` |
+| l2ChainId           | uint256 | Chain ID of the L2 network          | Copied from existing `PermissionedGame` |
 
 ## Security Considerations
 

@@ -1,13 +1,13 @@
 ---
 title: Fjord L2 Chain Derivation Changes
 lang: en-US
-description: 
+description:
 ---
 
 # Fjord L2 Chain Derivation Changes
 
-<!-- START doctoc generated TOC please keep comment here to allow auto update -->
-<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+// START doctoc generated TOC please keep comment here to allow auto update
+// DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE
 **Table of Contents**
 
 - [Protocol Parameter Changes](#protocol-parameter-changes)
@@ -24,17 +24,17 @@ description:
   - [GasPriceOracle Proxy Update](#gaspriceoracle-proxy-update)
   - [GasPriceOracle Enable Fjord](#gaspriceoracle-enable-fjord)
 
-<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+// END doctoc generated TOC please keep comment here to allow auto update
 
 # Protocol Parameter Changes
 
 The following table gives an overview of the changes in parameters.
 
-| Parameter | Pre-Fjord (default) value | Fjord value | Notes |
-| --------- | ------------------------- | ----------- | ----- |
-| `max_sequencer_drift` | 600 | 1800 | Was a protocol parameter since Bedrock. Now becomes a constant. |
-| `MAX_RLP_BYTES_PER_CHANNEL` | 10,000,000 | 100,000,000 | Protocol Constant is increasing. |
-| `MAX_CHANNEL_BANK_SIZE` | 100,000,000 | 1,000,000,000 | Protocol Constant is increasing. |
+| Parameter                   | Pre-Fjord (default) value | Fjord value   | Notes                                                           |
+| --------------------------- | ------------------------- | ------------- | --------------------------------------------------------------- |
+| `max_sequencer_drift`       | 600                       | 1800          | Was a protocol parameter since Bedrock. Now becomes a constant. |
+| `MAX_RLP_BYTES_PER_CHANNEL` | 10,000,000                | 100,000,000   | Protocol Constant is increasing.                                |
+| `MAX_CHANNEL_BANK_SIZE`     | 100,000,000               | 1,000,000,000 | Protocol Constant is increasing.                                |
 
 ## Timestamp Activation
 

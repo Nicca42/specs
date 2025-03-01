@@ -1,13 +1,13 @@
 ---
 title: Stage 1 Roles and Requirements
 lang: en-US
-description: 
+description:
 ---
 
 # Stage 1 Roles and Requirements
 
-<!-- START doctoc generated TOC please keep comment here to allow auto update -->
-<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+// START doctoc generated TOC please keep comment here to allow auto update
+// DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE
 **Table of Contents**
 
 - [Overview](#overview)
@@ -16,7 +16,7 @@ description:
 - [Configuration of Safes](#configuration-of-safes)
 - [Ownership model diagram](#ownership-model-diagram)
 
-<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+// END doctoc generated TOC please keep comment here to allow auto update
 
 ## Overview
 
@@ -57,13 +57,15 @@ achieve Stage 1.
 
 1. **The L1 ProxyAdmin Owner Safe:** This Safe acts as the Upgrade Controller. Accordingly, it is
    authorized to call the following functions:
-      - All `ProxyAdmin` `onlyOwner` functions.
-      - All `DisputeGameFactory` `onlyOwner` functions.
-      - All `DelayedWETH` `onlyOwner` functions.
+
+   - All `ProxyAdmin` `onlyOwner` functions.
+   - All `DisputeGameFactory` `onlyOwner` functions.
+   - All `DelayedWETH` `onlyOwner` functions.
 
    This safe has a threshold of 2, and is owned by two other Safes:
-      1. The Security Council Safe.
-      2. The Optimism Foundation Upgrades Safe.
+
+   1. The Security Council Safe.
+   2. The Optimism Foundation Upgrades Safe.
 
    In general, the threshold and number of owners MUST be configured such that an upgrade
    or other safety-critical action can NOT be performed without the cooperation of the Security Council.
@@ -73,11 +75,12 @@ achieve Stage 1.
    [Deputy Guardian Module](./safe-extensions.md#deputy-guardian-module).
 
    Accordingly, this Safe is authorized to call the following functions:
-      - `SuperchainConfig.pause()`
-      - `SuperchainConfig.unpause()`
-      - `OptimismPortal2.setRespectedGameType()`
-      - `OptimismPortal2.blacklistDisputeGame()`
-      - `AnchorStateRegistry.setAnchorState()`
+
+   - `SuperchainConfig.pause()`
+   - `SuperchainConfig.unpause()`
+   - `OptimismPortal2.setRespectedGameType()`
+   - `OptimismPortal2.blacklistDisputeGame()`
+   - `AnchorStateRegistry.setAnchorState()`
 
    This Safe has a threshold of 1 and is owned by the Security Council Safe.
 
@@ -139,16 +142,16 @@ flowchart LR
       end
    end
 
-    POA -->|controls| Safety
-    FndUp --> POA
-    Council --> POA
-    Council --> GS
-    FndOps -->|pause\nunpause\nsetRespectedGameType\nblackListDisputeGame| DGM
-    DPM -->|execTransactionFromModule| FndOps
-    FndUp -->|set versions|PV
-    LM -->|execTransactionFromModule| Council
-    DGM -->|execTransactionFromModule| GS
-    GS -->|controls| Exit
+    POA |controls| Safety
+    FndUp  POA
+    Council  POA
+    Council  GS
+    FndOps |pause\nunpause\nsetRespectedGameType\nblackListDisputeGame| DGM
+    DPM |execTransactionFromModule| FndOps
+    FndUp |set versions|PV
+    LM |execTransactionFromModule| Council
+    DGM |execTransactionFromModule| GS
+    GS |controls| Exit
 
    %% Declare a class to make the outer boxes somewhat transparent to provide some contrast
    classDef outer fill:#ffffff44
@@ -156,6 +159,6 @@ flowchart LR
 ```
 
 Note: in the diagram above, the [`ProtocolVersions`
-   contract](../protocol/superchain-upgrades.md#protocolversions-l1-contract) is listed as "Out of
-   Protocol", because the decision to follow the version signals in the contract is optional. It is
-   included here for completeness, but is not considered as either Safety or Liveness affecting.
+contract](../protocol/superchain-upgrades.md#protocolversions-l1-contract) is listed as "Out of
+Protocol", because the decision to follow the version signals in the contract is optional. It is
+included here for completeness, but is not considered as either Safety or Liveness affecting.

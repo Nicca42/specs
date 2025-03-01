@@ -1,13 +1,13 @@
 ---
 title: Messaging
 lang: en-US
-description: 
+description:
 ---
 
 # Messaging
 
-<!-- START doctoc generated TOC please keep comment here to allow auto update -->
-<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+// START doctoc generated TOC please keep comment here to allow auto update
+// DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE
 **Table of Contents**
 
 - [Message](#message)
@@ -33,7 +33,7 @@ description:
   - [Cyclic dependencies](#cyclic-dependencies)
   - [Transitive dependencies](#transitive-dependencies)
 
-<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+// END doctoc generated TOC please keep comment here to allow auto update
 
 ## Message
 
@@ -75,7 +75,7 @@ struct Identifier {
 ```
 
 | Name          | Type      | Description                                                                     |
-|---------------|-----------|---------------------------------------------------------------------------------|
+| ------------- | --------- | ------------------------------------------------------------------------------- |
 | `origin`      | `address` | Account that emits the log                                                      |
 | `blocknumber` | `uint256` | Block number in which the log was emitted                                       |
 | `logIndex`    | `uint256` | The index of the log in the array of all logs emitted in the block              |
@@ -97,7 +97,7 @@ exact state of the block templates between multiple chains together.
 Each [Log][log] (also known as `event` in solidity) forms an initiating message,
 with the raw log data coming from the [Message Payload](#message-payload).
 
-Messages are *broadcast*: the protocol does not enshrine address-targeting within messages.
+Messages are _broadcast_: the protocol does not enshrine address-targeting within messages.
 
 The initiating message is uniquely identifiable with an [`Identifier`](#message-identifier),
 such that it can be distinguished from other duplicate messages within the same transaction or block.
@@ -187,7 +187,7 @@ commit to the block it may reference.
 
 Messages may be executed before the block that initiates them is sealed.
 
-When tracking message dependencies, edges are maintained for *all* identified source blocks.
+When tracking message dependencies, edges are maintained for _all_ identified source blocks.
 
 Reorgs are resolved by filtering the view of the solver to only canonical blocks.
 If the source block is not canonical, the dependency is invalid.

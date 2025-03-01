@@ -1,13 +1,13 @@
 ---
 title: Custom Gas Token
 lang: en-US
-description: 
+description:
 ---
 
 # Custom Gas Token
 
-<!-- START doctoc generated TOC please keep comment here to allow auto update -->
-<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+// START doctoc generated TOC please keep comment here to allow auto update
+// DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE
 **Table of Contents**
 
 - [Overview](#overview)
@@ -48,7 +48,7 @@ description:
   - [Interoperability Support](#interoperability-support)
   - [Wrapped Ether](#wrapped-ether)
 
-<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+// END doctoc generated TOC please keep comment here to allow auto update
 
 ## Overview
 
@@ -66,13 +66,13 @@ Note, Ether is not a **custom** gas token, but may be used to pay gas. More on t
 
 ## Constants
 
-| Constant          | Value                           | Description |
-| ----------------- | ------------------------------- | ----------- |
-| `ETHER_TOKEN_ADDRESS` |  `address(0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE)` | Represents ether for gas paying asset |
-| `DEPOSITOR_ACCOUNT` | `address(0xDeaDDEaDDeAdDeAdDEAdDEaddeAddEAdDEAd0001)` | Account with auth permissions on `L1Block` contract |
-| `GAS_PAYING_TOKEN_SLOT` | `bytes32(uint256(keccak256("opstack.gaspayingtoken")) - 1)` | Storage slot that contains the address and decimals of the gas paying token |
-| `GAS_PAYING_TOKEN_NAME_SLOT` | `bytes32(uint256(keccak256("opstack.gaspayingtokenname")) - 1)` | Storage slot that contains the ERC20 `name()` of the gas paying token |
-| `GAS_PAYING_TOKEN_SYMBOL_SLOT` | `bytes32(uint256(keccak256("opstack.gaspayingtokensymbol")) - 1)` | Storage slot that contains the ERC20 `symbol()` of the gas paying token |
+| Constant                       | Value                                                             | Description                                                                 |
+| ------------------------------ | ----------------------------------------------------------------- | --------------------------------------------------------------------------- |
+| `ETHER_TOKEN_ADDRESS`          | `address(0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE)`             | Represents ether for gas paying asset                                       |
+| `DEPOSITOR_ACCOUNT`            | `address(0xDeaDDEaDDeAdDeAdDEAdDEaddeAddEAdDEAd0001)`             | Account with auth permissions on `L1Block` contract                         |
+| `GAS_PAYING_TOKEN_SLOT`        | `bytes32(uint256(keccak256("opstack.gaspayingtoken")) - 1)`       | Storage slot that contains the address and decimals of the gas paying token |
+| `GAS_PAYING_TOKEN_NAME_SLOT`   | `bytes32(uint256(keccak256("opstack.gaspayingtokenname")) - 1)`   | Storage slot that contains the ERC20 `name()` of the gas paying token       |
+| `GAS_PAYING_TOKEN_SYMBOL_SLOT` | `bytes32(uint256(keccak256("opstack.gaspayingtokensymbol")) - 1)` | Storage slot that contains the ERC20 `symbol()` of the gas paying token     |
 
 ## Properties of a Gas Paying Token
 
@@ -133,8 +133,8 @@ flowchart LR
         subgraph SystemConfig
           TA1[Token Address]
         end
-        CO[Chain Operator] -->|"initialize()"| SystemConfig
-        SystemConfig -->|"setGasPayingToken()"| OP
+        CO[Chain Operator] |"initialize()"| SystemConfig
+        SystemConfig |"setGasPayingToken()"| OP
     end
 
     subgraph Layer Two
@@ -142,7 +142,7 @@ flowchart LR
           TA2[Token Address]
         end
     end
-    OP -->|"setGasPayingToken()"| L1Block
+    OP |"setGasPayingToken()"| L1Block
 ```
 
 ## Contract Modifications
@@ -212,14 +212,14 @@ the `OptimismPortal` before they can deposit tokens.
 
 The following table describes the arguments to `depositERC20Transaction`
 
-| Name | Type | Description |
-|---------|---------|---------|
-| `_to` | `address` | The target of the deposit transaction |
-| `_mint` | `uint256` | The amount of token to deposit |
-| `_value` | `uint256` | The value of the deposit transaction, used to transfer native asset that is already on L2 from L1 |
-| `_gasLimit` | `uint64` | The gas limit of the deposit transaction |
-| `_isCreation` | `bool` | Signifies the `_data` should be used with `CREATE` |
-| `_data` | `bytes` | The calldata of the deposit transaction |
+| Name          | Type      | Description                                                                                       |
+| ------------- | --------- | ------------------------------------------------------------------------------------------------- |
+| `_to`         | `address` | The target of the deposit transaction                                                             |
+| `_mint`       | `uint256` | The amount of token to deposit                                                                    |
+| `_value`      | `uint256` | The value of the deposit transaction, used to transfer native asset that is already on L2 from L1 |
+| `_gasLimit`   | `uint64`  | The gas limit of the deposit transaction                                                          |
+| `_isCreation` | `bool`    | Signifies the `_data` should be used with `CREATE`                                                |
+| `_data`       | `bytes`   | The calldata of the deposit transaction                                                           |
 
 #### `depositTransaction`
 
@@ -334,13 +334,13 @@ meaning that "sending to the other domain" indicates it can be used for both dep
 
 ### When ETH is the Native Asset
 
-| Scenario | Method | Prerequisites |
-|----------|--------|---------------|
-| Native Asset Send to Other Domain | `L1StandardBridge.bridgeETH(uint32,bytes) payable` | None |
-| Native Asset and/or Message Send to Other Domain | `L1CrossDomainMessenger.sendMessage(address,bytes,uint32) payable` | None |
-| Native Asset Deposit | `OptimismPortal.depositTransaction(address,uint256,uint64,bool,bytes) payable` | None |
-| ERC20 Send to Other Domain | `L1StandardBridge.bridgeERC20(address,address,uint256,uint32,bytes)` | Approve `L1StandardBridge` for ERC20 |
-| Native Asset Withdrawal | `L2ToL1MessagePasser.initiateWithdrawal(address,uint256,bytes) payable` | None |
+| Scenario                                         | Method                                                                         | Prerequisites                        |
+| ------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------ |
+| Native Asset Send to Other Domain                | `L1StandardBridge.bridgeETH(uint32,bytes) payable`                             | None                                 |
+| Native Asset and/or Message Send to Other Domain | `L1CrossDomainMessenger.sendMessage(address,bytes,uint32) payable`             | None                                 |
+| Native Asset Deposit                             | `OptimismPortal.depositTransaction(address,uint256,uint64,bool,bytes) payable` | None                                 |
+| ERC20 Send to Other Domain                       | `L1StandardBridge.bridgeERC20(address,address,uint256,uint32,bytes)`           | Approve `L1StandardBridge` for ERC20 |
+| Native Asset Withdrawal                          | `L2ToL1MessagePasser.initiateWithdrawal(address,uint256,bytes) payable`        | None                                 |
 
 There are multiple APIs for users to deposit or withdraw `ether`. Depending on the usecase, different APIs should be
 preferred. For a simple send of just `ether` with no calldata, the `OptimismPortal` or `L2ToL1MessagePasser` should
@@ -349,11 +349,11 @@ should be used. Using the `StandardBridge` is the most expensive and has no real
 
 ### When an ERC20 Token is the Native Asset
 
-| Scenario | Method | Prerequisites |
-|----------|--------|---------------|
-| Native Asset Deposit | `OptimismPortal.depositERC20Transaction(address,uint256,uint256,uint64,bool,bytes)` | Approve `OptimismPortal` for ERC20 |
-| ERC20 Send to Other Domain | `L1StandardBridge.bridgeERC20(address,address,uint256,uint32,bytes)` | Approve `L1StandardBridge` for ERC20 |
-| Native Asset Withdrawal | `L2ToL1MessagePasser.initiateWithdrawal(address,uint256,bytes) payable` | None |
+| Scenario                   | Method                                                                              | Prerequisites                        |
+| -------------------------- | ----------------------------------------------------------------------------------- | ------------------------------------ |
+| Native Asset Deposit       | `OptimismPortal.depositERC20Transaction(address,uint256,uint256,uint64,bool,bytes)` | Approve `OptimismPortal` for ERC20   |
+| ERC20 Send to Other Domain | `L1StandardBridge.bridgeERC20(address,address,uint256,uint32,bytes)`                | Approve `L1StandardBridge` for ERC20 |
+| Native Asset Withdrawal    | `L2ToL1MessagePasser.initiateWithdrawal(address,uint256,bytes) payable`             | None                                 |
 
 Users should deposit native asset by calling `depositERC20Transaction` on the `OptimismPortal` contract.
 Users must first `approve` the address of the `OptimismPortal` so that the `OptimismPortal` can use
@@ -366,10 +366,10 @@ the `StandardBridge`, either on L1 or L2.
 
 ```mermaid
 flowchart TD
-    A1(User) -->|Attempts to deposit/withdraw ether| A2(StandardBridge or CrossDomainMessenger)
-    A2 -->|Is chain using custom gas token?| A3{SystemConfig or L1Block}
-    A3 --> |Yes| A2
-    A2 --> |Revert| A1
+    A1(User) |Attempts to deposit/withdraw ether| A2(StandardBridge or CrossDomainMessenger)
+    A2 |Is chain using custom gas token?| A3{SystemConfig or L1Block}
+    A3  |Yes| A2
+    A2  |Revert| A1
 
 ```
 
