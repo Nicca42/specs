@@ -1,13 +1,13 @@
 ---
 title: Governor
 lang: en-US
-description: 
+description:
 ---
 
 # Governor
 
-<!-- START doctoc generated TOC please keep comment here to allow auto update -->
-<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+{/* START doctoc generated TOC please keep comment here to allow auto update */}
+{/* DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE */}
 **Table of Contents**
 
 - [Overview](#overview)
@@ -78,7 +78,7 @@ description:
   - [Interface](#interface-2)
 - [Security Considerations](#security-considerations)
 
-<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+{/* END doctoc generated TOC please keep comment here to allow auto update */}
 
 ## Overview
 
@@ -88,12 +88,12 @@ for proposal types.
 
 ## Constants
 
-| Constant          | Value                           | Description |
-| ----------------- | ------------------------------- | ----------- |
-| `COUNTING_MODE` | `support=bravo&quorum=against,for,abstain&params=modules` | The configuration for supported values for `castVote` and how votes are counted, which is also consumed by UIs to show correct vote option and interpret results. |
-| `PROPOSAL_TYPES_CONFIGURATOR` |  `0x67ecA7B65Baf0342CE7fBf0AA15921524414C09f` | The address of the proposal types configurator contract  |
-| `VERSION` |  `2` | The version of the `Governor` contract  |
-| `TOKEN` |  `0x4200000000000000000000000000000000000042` | The address of the `GovernanceToken` contract  |
+| Constant                      | Value                                                     | Description                                                                                                                                                       |
+| ----------------------------- | --------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `COUNTING_MODE`               | `support=bravo&quorum=against,for,abstain&params=modules` | The configuration for supported values for `castVote` and how votes are counted, which is also consumed by UIs to show correct vote option and interpret results. |
+| `PROPOSAL_TYPES_CONFIGURATOR` | `0x67ecA7B65Baf0342CE7fBf0AA15921524414C09f`              | The address of the proposal types configurator contract                                                                                                           |
+| `VERSION`                     | `2`                                                       | The version of the `Governor` contract                                                                                                                            |
+| `TOKEN`                       | `0x4200000000000000000000000000000000000042`              | The address of the `GovernanceToken` contract                                                                                                                     |
 
 ## Interface
 
@@ -472,7 +472,7 @@ Returns the state of a proposal. The state MUST adhere to the following control 
 - `Succeeded` (4): The proposal has reached quorum and is considered successful.
 - `Queued` (5): The proposal has been queued. This state SHOULD NOT be used in the current version.
 - `Expired` (6): The grace period for the execution of the proposal has passed. This state SHOULD
-NOT be used in the current version.
+  NOT be used in the current version.
 - `Executed` (7): The proposal has been executed.
 
 This function MUST revert if the proposal does not exist.
@@ -574,7 +574,7 @@ MUST trigger when proposal vote with parameters is cast, per the
 [`castVoteWithReasonAndParamsBySig`](#castvotewithreasonandparamsbysig) functions.
 
 ```solidity
-event VoteCastWithParams(address indexed voter, uint256 proposalId, uint8 support, uint256 weight, string reason, bytes params); 
+event VoteCastWithParams(address indexed voter, uint256 proposalId, uint8 support, uint256 weight, string reason, bytes params);
 ```
 
 #### `ProposalTypeUpdated`
@@ -716,7 +716,7 @@ interface IGovernorModule {
         external
         view
         returns (address[] memory targets, uint256[] memory values, bytes[] memory calldatas);
-      
+
     /// @notice Getter that returns if a proposal was successful in terms of votes.
     /// @param _proposalId The ID of the proposal.
     function voteSucceeded(uint256 proposalId) external view returns (bool);

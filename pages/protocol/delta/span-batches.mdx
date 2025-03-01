@@ -1,13 +1,13 @@
 ---
 title: Span-batches
 lang: en-US
-description: 
+description:
 ---
 
 # Span-batches
 
-<!-- START doctoc generated TOC please keep comment here to allow auto update -->
-<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+{/* START doctoc generated TOC please keep comment here to allow auto update */}
+{/* DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE */}
 **Table of Contents**
 
 - [Introduction](#introduction)
@@ -30,9 +30,9 @@ description:
   - [Batch Queue](#batch-queue)
   - [Batcher](#batcher)
 
-<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+{/* END doctoc generated TOC please keep comment here to allow auto update */}
 
-<!-- All glossary references in this file. -->
+{/* All glossary references in this file. */}
 
 [g-deposit-tx-type]: ../../glossary.md#deposited-transaction-type
 [derivation]: ../derivation.md
@@ -237,8 +237,8 @@ Deposit transactions are excluded in batches and are never written at L1 so excl
 
 ### Adjust `txs` Data Layout for Better Compression
 
-There are (8 choose 2) \* 6! = 20160 permutations of ordering fields of `txs`.  It is not 8!
-because `contract_creation_bits` must be first decoded in order to decode `tx_tos`.  We
+There are (8 choose 2) \* 6! = 20160 permutations of ordering fields of `txs`. It is not 8!
+because `contract_creation_bits` must be first decoded in order to decode `tx_tos`. We
 experimented with different data layouts and found that segregating random data (`tx_sigs`,
 `tx_tos`, `tx_datas`) from the rest most improved the zlib compression ratio.
 

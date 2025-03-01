@@ -1,13 +1,13 @@
 ---
 title: Alt-DA Mode
 lang: en-US
-description: 
+description:
 ---
 
 # Alt-DA Mode
 
-<!-- START doctoc generated TOC please keep comment here to allow auto update -->
-<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+{/* START doctoc generated TOC please keep comment here to allow auto update */}
+{/* DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE */}
 **Table of Contents**
 
 - [Overview](#overview)
@@ -23,7 +23,7 @@ description:
 - [Safety and Finality](#safety-and-finality)
 - [Security Considerations](#security-considerations)
 
-<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+{/* END doctoc generated TOC please keep comment here to allow auto update */}
 
 Note: Alt-DA Mode is a Beta feature of the MIT licensed OP Stack.
 While it has received initial review from core contributors, it is still undergoing testing,
@@ -52,7 +52,7 @@ commitment (specified below) is submitted as the batcher inbox transaction call 
 Commitment txdata introduces version `1` to the [transaction format][batchertx], in order to interpret
 the txdata as a commitment during the l1 retrieval step of the derivation pipeline:
 
-| `version_byte` | `tx_data`   |
+| `version_byte` | `tx_data`            |
 | -------------- | -------------------- |
 | 1              | `encoded_commitment` |
 
@@ -62,10 +62,10 @@ can be decoded downstream.
 Commitments are encoded as `commitment_type_byte ++ commitment_bytes`, where `commitment_bytes` depends
 on the `commitment_type_byte` where [0, 128) are reserved for official implementations:
 
-| `commitment_type` | `commitment`                    |
-| ----------------- | ------------------------------- |
-| 0                 | `keccak256(tx_payload)`         |
-| 1                 | `da-service`                     |
+| `commitment_type` | `commitment`            |
+| ----------------- | ----------------------- |
+| 0                 | `keccak256(tx_payload)` |
+| 1                 | `da-service`            |
 
 The `da-service` commitment is as follows: `da_layer_byte ++ payload`.
 The DA layer byte must be initially restricted to the range `[0, 127)`.
@@ -150,18 +150,18 @@ Any DA provider can implement the following endpoints to receive and serve input
 
 ### Parameters
 
-| Constant | Type | Description     |
-| -------- | ---- | ---------------- |
-| fixedResolutionCost | `uint256` | Fixed gas cost of resolving a challenge, set to 72925 |
-| variableResolutionCost | `uint256` | Upper limit gas cost per byte scaled by precision constant, set to 16640 |
-| variableResolutionCostPrecision | `uint256` | Precision of the variable resolution cost, set to 1000 |
+| Constant                        | Type      | Description                                                              |
+| ------------------------------- | --------- | ------------------------------------------------------------------------ |
+| fixedResolutionCost             | `uint256` | Fixed gas cost of resolving a challenge, set to 72925                    |
+| variableResolutionCost          | `uint256` | Upper limit gas cost per byte scaled by precision constant, set to 16640 |
+| variableResolutionCostPrecision | `uint256` | Precision of the variable resolution cost, set to 1000                   |
 
-| Variable  | Type                     | Description                                                                 |
-| --------- | ----------------- | --------------------------------------------------------------------------- |
-| challengeWindow |  `uint256` | Number of L1 blocks whereby a commitment MAY be challenged after it's included onchain |
-| resolveWindow |  `uint256` | Number of L1 blocks whereby input data SHOULD be submitted onchain after a challenge   |
-| bondSize |   `uint256` | Bond amount in Wei posted by the challenger so that bondSize >= resolveCost |
-| resolverRefundFactor | `uint256` | Factor defining the portion of the resolving cost refunded to the resolver  |
+| Variable             | Type      | Description                                                                            |
+| -------------------- | --------- | -------------------------------------------------------------------------------------- |
+| challengeWindow      | `uint256` | Number of L1 blocks whereby a commitment MAY be challenged after it's included onchain |
+| resolveWindow        | `uint256` | Number of L1 blocks whereby input data SHOULD be submitted onchain after a challenge   |
+| bondSize             | `uint256` | Bond amount in Wei posted by the challenger so that bondSize >= resolveCost            |
+| resolverRefundFactor | `uint256` | Factor defining the portion of the resolving cost refunded to the resolver             |
 
 Data availability is guaranteed via a permissionless challenge contract on the L1 chain.
 Users have a set number of L1 blocks (`challengeWindow`) during which they are able to call

@@ -1,13 +1,13 @@
 ---
 title: GovernanceDelegation
 lang: en-US
-description: 
+description:
 ---
 
 # GovernanceDelegation
 
-<!-- START doctoc generated TOC please keep comment here to allow auto update -->
-<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+{/* START doctoc generated TOC please keep comment here to allow auto update */}
+{/* DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE */}
 **Table of Contents**
 
 - [Overview](#overview)
@@ -46,7 +46,7 @@ description:
   - [Dependence on GovernanceDelegation](#dependence-on-governancedelegation)
   - [Connection with GovernanceToken](#connection-with-governancetoken)
 
-<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+{/* END doctoc generated TOC please keep comment here to allow auto update */}
 
 ## Overview
 
@@ -61,11 +61,11 @@ and that the voting power of users is accurately reflected as token balances cha
 
 ## Constants
 
-| Constant          | Value                           | Description |
-| ----------------- | ------------------------------- | ----------- |
-| Address |  `0x4200000000000000000000000000000000000043` | Predeploy address of `GovernanceDelegation` |
-| `MAX_DELEGATIONS` | `20` | The maximum number of delegations allowed based on gas estimates of the worst-case scenario of an unoptimized version of the `_delegate` function |
-| `DENOMINATOR` | `10_000` | The denominator used for relative delegations |
+| Constant          | Value                                        | Description                                                                                                                                       |
+| ----------------- | -------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Address           | `0x4200000000000000000000000000000000000043` | Predeploy address of `GovernanceDelegation`                                                                                                       |
+| `MAX_DELEGATIONS` | `20`                                         | The maximum number of delegations allowed based on gas estimates of the worst-case scenario of an unoptimized version of the `_delegate` function |
+| `DENOMINATOR`     | `10_000`                                     | The denominator used for relative delegations                                                                                                     |
 
 ## Interface
 
@@ -277,11 +277,11 @@ struct Delegation {
 }
 ```
 
-| Name                     | Type            | Description                                                             |
-|--------------------------|-----------------|-------------------------------------------------------------------------|
-| `allowanceType`          | `AllowanceType` | Type of allowance (e.g., absolute or relative).                         |
-| `delegatee`              | `address`       | The address of the delegatee receiving the voting power.                |
-| `amount`                 | `uint256`       | Amount of votes delegated, denomination depending on `allowanceType`.   |
+| Name            | Type            | Description                                                           |
+| --------------- | --------------- | --------------------------------------------------------------------- |
+| `allowanceType` | `AllowanceType` | Type of allowance (e.g., absolute or relative).                       |
+| `delegatee`     | `address`       | The address of the delegatee receiving the voting power.              |
+| `amount`        | `uint256`       | Amount of votes delegated, denomination depending on `allowanceType`. |
 
 ### `AllowanceType`
 
@@ -294,10 +294,10 @@ enum AllowanceType {
 }
 ```
 
-| Name        | Number | Description                                                                                 |
-|-------------|--------|---------------------------------------------------------------------------------------------|
-| `Absolute`  | `0`    | The amount of votes delegated is fixed and denominated in the `GovernanceToken`'s decimals  |
-| `Relative`  | `1`    | The amount of votes delegated is relative and denominated in percentages.                   |
+| Name       | Number | Description                                                                                |
+| ---------- | ------ | ------------------------------------------------------------------------------------------ |
+| `Absolute` | `0`    | The amount of votes delegated is fixed and denominated in the `GovernanceToken`'s decimals |
+| `Relative` | `1`    | The amount of votes delegated is relative and denominated in percentages.                  |
 
 ## Migration
 
@@ -309,10 +309,10 @@ its state in the `GovernanceToken` contract.
 The `GovernanceDelegation` MUST enforce the following invariants for the migration logic:
 
 1. A user MUST NOT have an active delegation in both `GovernanceToken` and `GovernanceDelegation` at the same time.
-A delegation to address(0) is not considered an active delegation.
+   A delegation to address(0) is not considered an active delegation.
 2. The sum of the voting power of all advance delegations of a user MUST NOT exceed the total voting power of the user.
 3. The sum of the voting power a user receives from delegations in the `GovernanceDelegation` and the `GovernanceToken`
-MUST NOT be double counted.
+   MUST NOT be double counted.
 
 ## Backwards Compatibility
 
@@ -355,7 +355,7 @@ The following diagram shows the sequence of a basic delegation performed from th
 sequenceDiagram
     User ->> GovernanceToken: call `delegate` or `delegateBySig`
     GovernanceToken ->> GovernanceDelegation: call `delegateFromToken`
-    GovernanceDelegation -->> GovernanceToken: migrate if user hasn't been migrated
+    GovernanceDelegation */}> GovernanceToken: migrate if user hasn't been migrated
     GovernanceDelegation ->> GovernanceDelegation: apply basic delegation
 ```
 

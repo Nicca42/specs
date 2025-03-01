@@ -1,13 +1,13 @@
 ---
 title: L2 Execution Engine
 lang: en-US
-description: 
+description:
 ---
 
 # L2 Execution Engine
 
-<!-- START doctoc generated TOC please keep comment here to allow auto update -->
-<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+{/* START doctoc generated TOC please keep comment here to allow auto update */}
+{/* DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE */}
 **Table of Contents**
 
 - [Fees](#fees)
@@ -17,7 +17,7 @@ description:
       - [L1-Cost linear regression details](#l1-cost-linear-regression-details)
   - [L1 Gas Usage Estimation](#l1-gas-usage-estimation)
 
-<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+{/* END doctoc generated TOC please keep comment here to allow auto update */}
 
 ## Fees
 
@@ -38,7 +38,7 @@ The final `l1Fee` computation is an unlimited precision unsigned integer computa
 having `uint256` range. The values in this computation, are as follows:
 
 | Input arg            | Type      | Description                                                       | Value                    |
-|----------------------|-----------|-------------------------------------------------------------------|--------------------------|
+| -------------------- | --------- | ----------------------------------------------------------------- | ------------------------ |
 | `l1BaseFee`          | `uint256` | L1 base fee of the latest L1 origin registered in the L2 chain    | varies, L1 fee           |
 | `l1BlobBaseFee`      | `uint256` | Blob gas price of the latest L1 origin registered in the L2 chain | varies, L1 fee           |
 | `fastlzSize`         | `uint256` | Size of the FastLZ-compressed RLP-encoded signed tx               | varies, per transaction  |

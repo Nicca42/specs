@@ -1,13 +1,13 @@
 ---
 title: L2 Execution Engine
 lang: en-US
-description: 
+description:
 ---
 
 # L2 Execution Engine
 
-<!-- START doctoc generated TOC please keep comment here to allow auto update -->
-<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+{/* START doctoc generated TOC please keep comment here to allow auto update */}
+{/* DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE */}
 **Table of Contents**
 
 - [Overview](#overview)
@@ -36,9 +36,9 @@ description:
     - [Configuring Parameters](#configuring-parameters)
   - [Fee Vaults](#fee-vaults)
 
-<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+{/* END doctoc generated TOC please keep comment here to allow auto update */}
 
-<!-- All glossary references in this file. -->
+{/* All glossary references in this file. */}
 
 [l2-to-l1-mp]: ../../protocol/predeploys.md#L2ToL1MessagePasser
 [output-root]: ../../glossary.md#l2-output-root
@@ -72,11 +72,11 @@ Prior to isthmus activation:
 After Isthmus activation, an L2 block header is valid iff:
 
 1. The `withdrawalsRoot` field
-    1. Is 32 bytes in length.
-    1. Matches the [`L2ToL1MessagePasser`][l2-to-l1-mp] account storage root,
-    as committed to in the `storageRoot` within the block header
+   1. Is 32 bytes in length.
+   1. Matches the [`L2ToL1MessagePasser`][l2-to-l1-mp] account storage root,
+      as committed to in the `storageRoot` within the block header
 1. The `requestsHash` field is equal to `sha256('') = 0xe3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855`
-indicating no requests in the block.
+   indicating no requests in the block.
 
 ### Header Withdrawals Root
 

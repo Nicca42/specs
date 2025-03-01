@@ -1,13 +1,13 @@
 ---
 title: Cannon Fault Proof Virtual Machine
 lang: en-US
-description: 
+description:
 ---
 
 # Cannon Fault Proof Virtual Machine
 
-<!-- START doctoc generated TOC please keep comment here to allow auto update -->
-<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+{/* START doctoc generated TOC please keep comment here to allow auto update */}
+{/* DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE */}
 **Table of Contents**
 
 - [Overview](#overview)
@@ -27,7 +27,7 @@ description:
   - [Compiler Correctness](#compiler-correctness)
   - [Compiler Assumptions](#compiler-assumptions)
 
-<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+{/* END doctoc generated TOC please keep comment here to allow auto update */}
 
 ## Overview
 
@@ -137,7 +137,7 @@ However, the FPVM supports a subset of Linux/MIPS syscalls with slightly differe
 The following table list summarizes the supported syscalls and their behaviors.
 
 | \$v0 | system call | \$a0            | \$a1       | \$a2         | Effect                                                                                                                                   |
-| ---- | ----------- | --------------- | ---------- | ------------ |------------------------------------------------------------------------------------------------------------------------------------------|
+| ---- | ----------- | --------------- | ---------- | ------------ | ---------------------------------------------------------------------------------------------------------------------------------------- |
 | 4090 | mmap        | uint32 addr     | uint32 len | 🚫           | Allocates a page from the heap. See [heap](#heap) for details.                                                                           |
 | 4045 | brk         | 🚫              | 🚫         | 🚫           | Returns a fixed address for the program break at `0x40000000`                                                                            |
 | 4120 | clone       | 🚫              | 🚫         | 🚫           | Returns 1                                                                                                                                |

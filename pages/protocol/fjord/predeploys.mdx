@@ -1,19 +1,19 @@
 ---
 title: Predeploys
 lang: en-US
-description: 
+description:
 ---
 
 # Predeploys
 
-<!-- START doctoc generated TOC please keep comment here to allow auto update -->
-<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+{/* START doctoc generated TOC please keep comment here to allow auto update */}
+{/* DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE */}
 **Table of Contents**
 
 - [GasPriceOracle](#gaspriceoracle)
   - [L1 Gas Usage Estimation](#l1-gas-usage-estimation)
 
-<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+{/* END doctoc generated TOC please keep comment here to allow auto update */}
 
 ## GasPriceOracle
 
@@ -48,7 +48,7 @@ function getL1FeeUpperBound(uint256 unsignedTxSize) external view returns (uint2
     if (estimatedSize < minTransactionSize) {
         estimatedSize = minTransactionSize;
     }
-  
+
     uint256 l1FeeScaled = baseFeeScalar() * l1BaseFee() * 16 + blobBaseFeeScalar() * blobBaseFee();
     return uint256(estimatedSize) * l1FeeScaled / (10 ** (DECIMALS * 2));
 }

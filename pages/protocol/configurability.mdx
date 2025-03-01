@@ -1,13 +1,13 @@
 ---
 title: OP Stack Configurability
 lang: en-US
-description: 
+description:
 ---
 
 # OP Stack Configurability
 
-<!-- START doctoc generated TOC please keep comment here to allow auto update -->
-<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+{/* START doctoc generated TOC please keep comment here to allow auto update */}
+{/* DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE */}
 **Table of Contents**
 
 - [Consensus Parameters](#consensus-parameters)
@@ -56,7 +56,7 @@ description:
   - [Proposer address](#proposer-address)
   - [Sequencer P2P / Unsafe head signer](#sequencer-p2p--unsafe-head-signer)
 
-<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+{/* END doctoc generated TOC please keep comment here to allow auto update */}
 
 When deploying the OP Stack software to a production environment,
 certain parameters about the protocol can be configured. These
@@ -93,8 +93,12 @@ The recommended way to deploy L1 contracts for an OP chain that meet the standar
 see [Batcher Transaction](../glossary.md#batcher-transaction)).<br/>
 **Administrator:** Static<br/>
 **Requirement:** Current convention is
-<code>versionByte &vert;&vert; keccak256(bytes32(chainId))\[:19\]</code>, where <code>&vert;&vert;</code> denotes
-concatenation, `versionByte` is `0x00`, and `chainId` is a `uint256`.<br/>
+
+<code>versionByte &vert;&vert; keccak256(bytes32(chainId))\[:19\]</code>, where <code>
+  &vert;&vert;
+</code> denotes concatenation, `versionByte` is `0x00`, and `chainId` is a
+`uint256`.
+<br />
 **Notes:** It is recommended, but not required, to follow this convention.
 
 ### [Batcher Hash](./system-config.md#batcherhash-bytes32)

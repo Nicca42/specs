@@ -1,13 +1,13 @@
 ---
 title: Optimism Overview
 lang: en-US
-description: 
+description:
 ---
 
 # Optimism Overview
 
-<!-- START doctoc generated TOC please keep comment here to allow auto update -->
-<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+{/* START doctoc generated TOC please keep comment here to allow auto update */}
+{/* DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE */}
 **Table of Contents**
 
 - [Architecture Design Goals](#architecture-design-goals)
@@ -27,7 +27,7 @@ description:
     - [Block Derivation Loop](#block-derivation-loop)
   - [Engine API](#engine-api)
 
-<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+{/* END doctoc generated TOC please keep comment here to allow auto update */}
 
 This document is a high-level technical overview of the Optimism protocol. It aims to explain how the protocol works in
 an informal manner, and direct readers to other parts of the specification so that they may learn more.
@@ -97,40 +97,40 @@ graph LR
     L2Nodes -.->|fetch transaction batches| BatchDataEOA
     L2Nodes -.->|fetch deposit events| OptimismPortal
 
-    Batcher -->|publish transaction batches| BatchDataEOA
+    Batcher */}|publish transaction batches| BatchDataEOA
 
-    ExternalERC20 <-->|mint/burn/transfer tokens| L1StandardBridge
-    ExternalERC721 <-->|mint/burn/transfer tokens| L1ERC721Bridge
+    ExternalERC20 <*/}|mint/burn/transfer tokens| L1StandardBridge
+    ExternalERC721 <*/}|mint/burn/transfer tokens| L1ERC721Bridge
 
-    L1StandardBridge <-->|send/receive messages| L1CrossDomainMessenger
+    L1StandardBridge <*/}|send/receive messages| L1CrossDomainMessenger
     L1StandardBridge -.->|query pause state| SuperchainConfig
 
-    L1ERC721Bridge <-->|send/receive messages| L1CrossDomainMessenger
+    L1ERC721Bridge <*/}|send/receive messages| L1CrossDomainMessenger
     L1ERC721Bridge -.->|query pause state| SuperchainConfig
 
-    L1CrossDomainMessenger <-->|send/receive messages| OptimismPortal
+    L1CrossDomainMessenger <*/}|send/receive messages| OptimismPortal
     L1CrossDomainMessenger -.->|query pause state| SuperchainConfig
 
     OptimismPortal -.->|query pause state| SuperchainConfig
     OptimismPortal -.->|query config| SystemConfig
     OptimismPortal -.->|query state proposals| DisputeGameFactory
 
-    DisputeGameFactory -->|generate instances| FaultDisputeGame
+    DisputeGameFactory */}|generate instances| FaultDisputeGame
 
-    FaultDisputeGame -->|store bonds| DelayedWETH
-    FaultDisputeGame -->|query/update anchor states| AnchorStateRegistry
+    FaultDisputeGame */}|store bonds| DelayedWETH
+    FaultDisputeGame */}|query/update anchor states| AnchorStateRegistry
 
-    Users <-->|deposit/withdraw ETH/ERC20s| L1StandardBridge
-    Users <-->|deposit/withdraw ERC721s| L1ERC721Bridge
-    Users -->|prove/execute withdrawals| OptimismPortal
+    Users <*/}|deposit/withdraw ETH/ERC20s| L1StandardBridge
+    Users <*/}|deposit/withdraw ERC721s| L1ERC721Bridge
+    Users */}|prove/execute withdrawals| OptimismPortal
 
-    Challengers -->|propose output roots| DisputeGameFactory
-    Challengers -->|verify/challenge/defend proposals| FaultDisputeGame
+    Challengers */}|propose output roots| DisputeGameFactory
+    Challengers */}|verify/challenge/defend proposals| FaultDisputeGame
 
-    Guardian -->|pause/unpause| SuperchainConfig
-    Guardian -->|safety net actions| OptimismPortal
-    Guardian -->|safety net actions| DisputeGameFactory
-    Guardian -->|safety net actions| DelayedWETH
+    Guardian */}|pause/unpause| SuperchainConfig
+    Guardian */}|safety net actions| OptimismPortal
+    Guardian */}|safety net actions| DisputeGameFactory
+    Guardian */}|safety net actions| DelayedWETH
 
     classDef extContracts stroke:#ff9,stroke-width:2px;
     classDef l1Contracts stroke:#bbf,stroke-width:2px;
@@ -208,24 +208,24 @@ graph LR
     end
 
     L2Node -.->|derives chain from| L1SmartContracts
-    L2Node -->|updates| L1Block
-    L2Node -->|distributes fees to| L1FeeVault
-    L2Node -->|distributes fees to| BaseFeeVault
-    L2Node -->|distributes fees to| SequencerFeeVault
-    L2Node -->|derives from deposits| DepositTransaction
-    L2Node -->|derives from chain data| UserTransaction
+    L2Node */}|updates| L1Block
+    L2Node */}|distributes fees to| L1FeeVault
+    L2Node */}|distributes fees to| BaseFeeVault
+    L2Node */}|distributes fees to| SequencerFeeVault
+    L2Node */}|derives from deposits| DepositTransaction
+    L2Node */}|derives from chain data| UserTransaction
 
-    UserTransaction -->|can trigger| OtherContracts
-    DepositTransaction -->|maybe triggers| L2CrossDomainMessenger
-    DepositTransaction -->|can trigger| OtherContracts
+    UserTransaction */}|can trigger| OtherContracts
+    DepositTransaction */}|maybe triggers| L2CrossDomainMessenger
+    DepositTransaction */}|can trigger| OtherContracts
 
-    ExternalERC20 <-->|mint/burn/transfer| L2StandardBridge
-    ExternalERC721 <-->|mint/burn/transfer| L2ERC721Bridge
+    ExternalERC20 <*/}|mint/burn/transfer| L2StandardBridge
+    ExternalERC721 <*/}|mint/burn/transfer| L2ERC721Bridge
 
-    L2StandardBridge <-->|sends/receives messages| L2CrossDomainMessenger
-    L2ERC721Bridge <-->|sends/receives messages| L2CrossDomainMessenger
+    L2StandardBridge <*/}|sends/receives messages| L2CrossDomainMessenger
+    L2ERC721Bridge <*/}|sends/receives messages| L2CrossDomainMessenger
     GasPriceOracle -.->|queries| L1Block
-    L2CrossDomainMessenger -->|sends messages| L2ToL1MessagePasser
+    L2CrossDomainMessenger */}|sends messages| L2ToL1MessagePasser
 
     classDef extContracts stroke:#ff9,stroke-width:2px;
     classDef l2Contracts stroke:#bbf,stroke-width:2px;
@@ -265,9 +265,9 @@ graph LR
         Implementation(Implementation)
     end
 
-    ProxyAdminOwner -->|manages| ProxyAdmin
-    ProxyAdmin -->|upgrades| Proxy
-    Proxy -->|delegatecall| Implementation
+    ProxyAdminOwner */}|manages| ProxyAdmin
+    ProxyAdmin */}|upgrades| Proxy
+    Proxy */}|delegatecall| Implementation
 
     classDef l1Contracts stroke:#bbf,stroke-width:2px;
     classDef systemUser stroke:#f9a,stroke-width:2px;
@@ -302,17 +302,17 @@ graph LR
 
     BatchSubmitter -.->|fetch transaction batch info| RollupNode
     BatchSubmitter -.->|fetch transaction batch info| ExecutionEngine
-    BatchSubmitter -->|send transaction batches| BatchDataEOA
+    BatchSubmitter */}|send transaction batches| BatchDataEOA
 
     RollupNode -.->|fetch transaction batches| BatchDataEOA
     RollupNode -.->|fetch deposit transactions| OptimismPortal
-    RollupNode -->|drives| ExecutionEngine
+    RollupNode */}|drives| ExecutionEngine
 
     OutputSubmitter -.->|fetch outputs| RollupNode
-    OutputSubmitter -->|send output proposals| DisputeGameFactory
+    OutputSubmitter */}|send output proposals| DisputeGameFactory
 
     Challenger -.->|fetch dispute games| DisputeGameFactory
-    Challenger -->|verify/challenge/defend games| FaultDisputeGame
+    Challenger */}|verify/challenge/defend games| FaultDisputeGame
 
     classDef l2Components stroke:#333,stroke-width:2px;
     classDef systemUser stroke:#f9a,stroke-width:2px;

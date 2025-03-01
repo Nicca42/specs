@@ -1,10 +1,10 @@
 ---
 title: Interop
 lang: en-US
-description: 
+description:
 ---
 
-<!-- DOCTOC SKIP -->
+{/* DOCTOC SKIP */}
 
 # Interop
 
@@ -17,17 +17,17 @@ allows for a horizontally scalable blockchain network.
 Note: this document references an "interop network upgrade" as a temporary name. The pending name of the
 network upgrade is isthmus.
 
-| Term                | Definition                                                                                          |
-|---------------------|-----------------------------------------------------------------------------------------------------|
-| Source Chain        | A blockchain that includes an initiating message                                                    |
-| Destination Chain   | A blockchain that includes an executing message                                                     |
-| Initiating Message  | An event emitted from a source chain                                                                |
-| Identifier          | A unique pointer to an initiating message                                                           |
+| Term                | Definition                                                                                                    |
+| ------------------- | ------------------------------------------------------------------------------------------------------------- |
+| Source Chain        | A blockchain that includes an initiating message                                                              |
+| Destination Chain   | A blockchain that includes an executing message                                                               |
+| Initiating Message  | An event emitted from a source chain                                                                          |
+| Identifier          | A unique pointer to an initiating message                                                                     |
 | Executing Message   | An event emitted from a destination chain's `CrossL2Inbox` that includes an initiating message and identifier |
-| Cross Chain Message | The cumulative execution and side effects of the initiating message and executing message           |
-| Dependency Set      | The set of chains that originate initiating transactions where the executing transactions are valid |
-| Log                 | The Ethereum consensus object created by the `LOG*` opcodes                                         |
-| Event               | The solidity representation of a log                                                                |
+| Cross Chain Message | The cumulative execution and side effects of the initiating message and executing message                     |
+| Dependency Set      | The set of chains that originate initiating transactions where the executing transactions are valid           |
+| Log                 | The Ethereum consensus object created by the `LOG*` opcodes                                                   |
+| Event               | The solidity representation of a log                                                                          |
 
 A total of two transactions are required to complete a cross chain message.
 The first transaction is submitted to the source chain and any log that is emitted can be

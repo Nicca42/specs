@@ -1,13 +1,13 @@
 ---
 title: L2 Chain Derivation Specification
 lang: en-US
-description: 
+description:
 ---
 
 # L2 Chain Derivation Specification
 
-<!-- START doctoc generated TOC please keep comment here to allow auto update -->
-<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+{/* START doctoc generated TOC please keep comment here to allow auto update */}
+{/* DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE */}
 **Table of Contents**
 
 - [Overview](#overview)
@@ -51,9 +51,9 @@ description:
   - [Building Individual Payload Attributes](#building-individual-payload-attributes)
   - [On Future-Proof Transaction Log Derivation](#on-future-proof-transaction-log-derivation)
 
-<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+{/* END doctoc generated TOC please keep comment here to allow auto update */}
 
-<!-- All glossary references in this file. -->
+{/* All glossary references in this file. */}
 
 [g-derivation]: ../glossary.md#L2-chain-derivation
 [g-payload-attr]: ../glossary.md#payload-attributes
@@ -185,12 +185,12 @@ without deriving blocks from them.
 The following table gives an overview of some protocol parameters, and how they are affected by
 protocol upgrades.
 
-| Parameter | Bedrock (default) value | Latest (default) value | Changes | Notes |
-| --------- | ----------------------- | ---------------------- | ------- | ----- |
-| `max_sequencer_drift` | 600 | 1800 | [Fjord](./fjord/derivation.md#constant-maximum-sequencer-drift) | Changed from a chain parameter to a constant with Fjord. |
-| `MAX_RLP_BYTES_PER_CHANNEL` | 10,000,000 | 100,000,000 | [Fjord](./fjord/derivation.md#increasing-max_rlp_bytes_per_channel-and-max_channel_bank_size) | Constant increased with Fjord. |
-| `MAX_CHANNEL_BANK_SIZE` | 100,000,000 | 1,000,000,000 | [Fjord](./fjord/derivation.md#increasing-max_rlp_bytes_per_channel-and-max_channel_bank_size) | Constant increased with Fjord. |
-| `MAX_SPAN_BATCH_ELEMENT_COUNT` | 10,000,000 | 10,000,000 | Effectively introduced in [Fjord](./fjord/derivation.md#increasing-max_rlp_bytes_per_channel-and-max_channel_bank_size)| Number of elements |
+| Parameter                      | Bedrock (default) value | Latest (default) value | Changes                                                                                                                 | Notes                                                    |
+| ------------------------------ | ----------------------- | ---------------------- | ----------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------- |
+| `max_sequencer_drift`          | 600                     | 1800                   | [Fjord](./fjord/derivation.md#constant-maximum-sequencer-drift)                                                         | Changed from a chain parameter to a constant with Fjord. |
+| `MAX_RLP_BYTES_PER_CHANNEL`    | 10,000,000              | 100,000,000            | [Fjord](./fjord/derivation.md#increasing-max_rlp_bytes_per_channel-and-max_channel_bank_size)                           | Constant increased with Fjord.                           |
+| `MAX_CHANNEL_BANK_SIZE`        | 100,000,000             | 1,000,000,000          | [Fjord](./fjord/derivation.md#increasing-max_rlp_bytes_per_channel-and-max_channel_bank_size)                           | Constant increased with Fjord.                           |
+| `MAX_SPAN_BATCH_ELEMENT_COUNT` | 10,000,000              | 10,000,000             | Effectively introduced in [Fjord](./fjord/derivation.md#increasing-max_rlp_bytes_per_channel-and-max_channel_bank_size) | Number of elements                                       |
 
 ---
 
@@ -315,10 +315,10 @@ interacting with the [execution-engine API][exec-engine].
 
 Batcher transactions are encoded as `version_byte ++ rollup_payload` (where `++` denotes concatenation).
 
-| `version_byte` | `rollup_payload`                               |
-| -------------- | ---------------------------------------------- |
-| 0              | `frame ...` (one or more frames, concatenated) |
-| 1    | `da_commitment` (experimental, see [alt-da](../experimental/alt-da.md#input-commitment-submission)) |
+| `version_byte` | `rollup_payload`                                                                                    |
+| -------------- | --------------------------------------------------------------------------------------------------- |
+| 0              | `frame ...` (one or more frames, concatenated)                                                      |
+| 1              | `da_commitment` (experimental, see [alt-da](../experimental/alt-da.md#input-commitment-submission)) |
 
 Unknown versions make the batcher transaction invalid (it must be ignored by the rollup node).
 All frames in a batcher transaction must be parseable. If any one frame fails to parse, the all frames in the
@@ -377,7 +377,7 @@ rlp_batches = rlp_encode(encoded_batches)
 where:
 
 - `batches` is the input, a sequence of batches each with a byte-encoder
-function `.encode()` as per the next section ("Batch Encoding")
+  function `.encode()` as per the next section ("Batch Encoding")
 - `encoded_batches` is a byte array: the concatenation of the encoded batches
 - `rlp_batches` is the rlp encoding of the concatenated encoded batches
 
@@ -1073,12 +1073,12 @@ type can be decoded from the first byte of the transaction's (or its receipt's) 
 follows to get the logs of such a future transaction, or discard the transaction's receipt as invalid.
 
 - If it's a known transaction type, that is, legacy (first byte of the encoding is in the range `[0xc0, 0xfe]`) or its
-first byte is in the range `[0, 4]` or `0x7e` (_deposited_), then it's not a _future transaction_ and we know how to
-decode the receipt and this process is irrelevant.
+  first byte is in the range `[0, 4]` or `0x7e` (_deposited_), then it's not a _future transaction_ and we know how to
+  decode the receipt and this process is irrelevant.
 - If a transaction's first byte is in the range `[0x05, 0x7d]`, it is expected to be a _future_ EIP-2718 transaction, so
-we can proceed to the receipt. Note that we excluded `0x7e` because that's the deposit transaction type, which is known.
+  we can proceed to the receipt. Note that we excluded `0x7e` because that's the deposit transaction type, which is known.
 - The _future_ receipt encoding's first byte must be the same byte as the transaction encoding's first byte, or it is
-discarded as invalid, because we require it to be an EIP-2718-encoded receipt to continue.
+  discarded as invalid, because we require it to be an EIP-2718-encoded receipt to continue.
 - The receipt payload is decoded as if it is encoded as `rlp([status, cumulative_transaction_gas_used, logs_bloom,
 logs])`, which is the encoding of the known non-legacy transaction types.
   - If this decoding fails, the transaction's receipt is discarded as invalid.

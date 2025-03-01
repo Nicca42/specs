@@ -1,13 +1,13 @@
 ---
 title: Token Bridging
 lang: en-US
-description: 
+description:
 ---
 
 # Token Bridging
 
-<!-- START doctoc generated TOC please keep comment here to allow auto update -->
-<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+{/* START doctoc generated TOC please keep comment here to allow auto update */}
+{/* DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE */}
 **Table of Contents**
 
 - [Overview](#overview)
@@ -25,7 +25,7 @@ description:
   - [Cross Chain `transferFrom`](#cross-chain-transferfrom)
   - [Concatenated Action](#concatenated-action)
 
-<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+{/* END doctoc generated TOC please keep comment here to allow auto update */}
 
 ## Overview
 
@@ -139,7 +139,7 @@ The following diagram depicts a cross-chain transfer.
 ---
 config:
   theme: dark
-  fontSize: 48 
+  fontSize: 48
 ---
 sequenceDiagram
   participant from
@@ -153,16 +153,16 @@ sequenceDiagram
 
   from->>L2SBA: sendERC20(tokenAddr, to, amount, chainID)
   L2SBA->>SuperERC20_A: crosschainBurn(from, amount)
-  SuperERC20_A-->SuperERC20_A: emit CrosschainBurn(from, amount, sender)
+  SuperERC20_A*/}SuperERC20_A: emit CrosschainBurn(from, amount, sender)
   L2SBA->>Messenger_A: sendMessage(chainId, message)
   Messenger_A->>L2SBA: return msgHash_
-  L2SBA-->L2SBA: emit SentERC20(tokenAddr, from, to, amount, destination)
+  L2SBA*/}L2SBA: emit SentERC20(tokenAddr, from, to, amount, destination)
   L2SBA->>from: return msgHash_
   Inbox->>Messenger_B: relayMessage()
   Messenger_B->>L2SBB: relayERC20(tokenAddr, from, to, amount)
   L2SBB->>SuperERC20_B: crosschainMint(to, amount)
-  SuperERC20_B-->SuperERC20_B: emit CrosschainMint(to, amount, sender)
-  L2SBB-->L2SBB: emit RelayedERC20(tokenAddr, from, to, amount, source)
+  SuperERC20_B*/}SuperERC20_B: emit CrosschainMint(to, amount, sender)
+  L2SBB*/}L2SBB: emit RelayedERC20(tokenAddr, from, to, amount, source)
 ```
 
 ## Implementation
@@ -208,7 +208,7 @@ to facilitate such an action and rely on the usage of `Permit2` like this:
 ---
 config:
   theme: dark
-  fontSize: 48 
+  fontSize: 48
 ---
 sequenceDiagram
   participant from
@@ -244,7 +244,7 @@ This approach has great potential but can also be achieved outside the standard 
 ---
 config:
   theme: dark
-  fontSize: 48 
+  fontSize: 48
 ---
 sequenceDiagram
   participant from
@@ -260,16 +260,16 @@ sequenceDiagram
   from->>Intermediate_A: sendWithData(data)
   Intermediate_A->>L2SBA: sendERC20To(tokenAddr, to, amount, chainID)
   L2SBA->>SuperERC20_A: crosschainBurn(from, amount)
-  SuperERC20_A-->SuperERC20_A: emit CrosschainBurn(from, amount, sender)
+  SuperERC20_A*/}SuperERC20_A: emit CrosschainBurn(from, amount, sender)
   L2SBA->>Messenger_A: sendMessage(chainId, message)
-  L2SBA-->L2SBA: emit SentERC20(tokenAddr, from, to, amount, destination)
+  L2SBA*/}L2SBA: emit SentERC20(tokenAddr, from, to, amount, destination)
   Intermediate_A->>Messenger_A: sendMessage(chainId, to, data)
   Inbox->>Messenger_B: relayMessage()
   Messenger_B->>L2SBB: relayERC20(tokenAddr, from, to, amount)
   L2SBB->>SuperERC20_B: crosschainMint(to, amount)
-  SuperERC20_B-->SuperERC20_B: emit CrosschainMint(to, amount, sender)
+  SuperERC20_B*/}SuperERC20_B: emit CrosschainMint(to, amount, sender)
   Inbox->>Messenger_B: relayMessage(): call
-  L2SBB-->L2SBB: emit RelayedERC20(tokenAddr, from, to, amount, source)
+  L2SBB*/}L2SBB: emit RelayedERC20(tokenAddr, from, to, amount, source)
   Messenger_B->>to: call(data)
 ```
 
