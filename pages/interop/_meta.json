@@ -1,0 +1,16 @@
+{
+  "dependency-set": "The Dependency Set",
+  "derivation": "Derivation",
+  "eth-lockbox": "ETH Lockbox",
+  "fault-proof": "Fault Proof",
+  "messaging": "Messaging",
+  "optimism-portal": "OptimismPortal Interop",
+  "overview": "Interop",
+  "predeploys": "Predeploys",
+  "sequencer": "Sequencer",
+  "superchain-weth": "Superchain WETH",
+  "token-bridging": "Token Bridging",
+  "tx-pool": "Transaction pool",
+  "upgrade": "Interop Network Upgrade",
+  "verifier": "Verifier"
+}

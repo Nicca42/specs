@@ -1,0 +1,107 @@
+{
+  "index": {
+    "title": "Home",
+    "display": "hidden",
+    "theme": {
+      "breadcrumb": false,
+      "footer": true,
+      "sidebar": false,
+      "toc": false,
+      "pagination": false
+    }
+  },
+  "interop": {
+    "title": "Interop",
+    "type": "page",
+    "theme": {
+      "navbar": true,
+      "sidebar": true,
+      "toc": true,
+      "pagination": true
+    },
+    "display": "children"
+  },
+  "protocol": {
+    "title": "Protocol",
+    "type": "page",
+    "theme": {
+      "navbar": true,
+      "sidebar": true,
+      "toc": true,
+      "pagination": true
+    },
+    "display": "children"
+  },
+  "fault-proof": {
+    "title": "Fault Proof",
+    "type": "page",
+    "theme": {
+      "navbar": true,
+      "sidebar": true,
+      "toc": true,
+      "pagination": true
+    },
+    "display": "children"
+  },
+  "governance": {
+    "title": "Governance",
+    "type": "page",
+    "theme": {
+      "navbar": true,
+      "sidebar": true,
+      "toc": true,
+      "pagination": true
+    },
+    "display": "children"
+  },
+  "experimental": {
+    "title": "Experimental",
+    "type": "page",
+    "theme": {
+      "navbar": true,
+      "sidebar": true,
+      "toc": true,
+      "pagination": true
+    },
+    "display": "children"
+  },
+
+  "connect": {
+    "title": "Connect",
+    "type": "page",
+    "display": "hidden",
+    "theme": {
+      "breadcrumb": false,
+      "footer": true,
+      "sidebar": true,
+      "toc": false,
+      "pagination": false
+    }
+  },
+
+  "404": {
+    "title": "404",
+    "display": "hidden",
+    "theme": {
+      "layout": "full",
+      "breadcrumb": false,
+      "footer": true,
+      "sidebar": true,
+      "toc": false,
+      "pagination": false
+    }
+  },
+
+  "500": {
+    "title": "500",
+    "display": "hidden",
+    "theme": {
+      "layout": "full",
+      "breadcrumb": false,
+      "footer": true,
+      "sidebar": true,
+      "toc": false,
+      "pagination": false
+    }
+  }
+}

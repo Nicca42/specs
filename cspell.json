@@ -17,8 +17,12 @@
   ],
   "overrides": [
     {
-      "filename": "**/*.md",
-      "ignoreRegExpList": []
+      "filename": "**/*.mdx",
+      "ignoreRegExpList": [
+        "/`[^`]*`/",
+        "/```[\\s\\S]*?```/",
+        "/\\([^)]*\\)/"
+      ]
     }
   ]
 }

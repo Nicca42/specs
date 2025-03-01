@@ -1,5 +1,22 @@
-# Rendered book
-book/
+# packages
+node_modules
 
-node_modules/**
-/.idea
+# os specific files
+.DS_Store
+
+# build artifacts
+.next
+public/robots.txt
+public/sitemap-0.xml
+public/sitemap.xml
+
+# log files
+*.log
+
+# .env files
+.env
+
+# algolia
+.algolia
+# Local Netlify folder
+.netlify
